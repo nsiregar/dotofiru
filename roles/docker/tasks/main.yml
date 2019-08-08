@@ -20,7 +20,9 @@
     - containerd.io
 
 - name: Add docker group
-  shell: groupadd docker
+  group:
+    name: docker
+    state: present
   become: true
 
 - name: Add user to docker group
