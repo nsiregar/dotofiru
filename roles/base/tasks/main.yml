@@ -1,0 +1,53 @@
+- name: Install required packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  become: true
+  with_items:
+    - make
+    - cmake
+    - build-essential
+    - libssl-dev
+    - zlib1g-dev
+    - libbz2-dev
+    - libreadline-dev
+    - libsqlite3-dev
+    - wget
+    - curl
+    - llvm
+    - xclip
+    - fonts-powerline
+    - gnupg2
+    - apt-transport-https
+    - ca-certificates
+    - gnupg-agent
+    - software-properties-common
+    - exuberant-ctags
+    - silversearcher-ag
+
+- name: Add git ppa
+  apt_repository:
+    repo: ppa:git-core/ppa
+    state: present
+  become: true
+
+- name: Install git
+  apt:
+    name: git
+    state: present
+    update_cache: yes
+  become: true
+
+- name: Copy gitconfig
+  copy:
+    src: gitconfig
+    dest: "{{ ansible_env.HOME }}/.gitconfig"
+    force: no
+
+- name: Copy gitignore
+  copy:
+    src: gitignore_global
+    dest: "{{ ansible_env.HOME }}/.gitignore_global"
+    force: no
+

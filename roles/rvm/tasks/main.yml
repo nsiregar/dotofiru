@@ -1,0 +1,18 @@
+- name: Install rvm gpg keys
+  shell: >
+    gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+  become: false
+
+- name: Install rvm
+  shell: >
+    curl -sSL https://get.rvm.io | bash -s stable
+  become: false
+
+- name: Update .zshrc
+  lineinfile:
+    dest: "{{ ansible_env.HOME }}/.zshrc"
+    state: present
+    create: no
+    line: "{{ item }}"
+  with_items:
+    - 'export PATH="$PATH:$HOME/.rvm/bin"'

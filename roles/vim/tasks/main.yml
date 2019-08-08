@@ -1,0 +1,24 @@
+- name: Add vim ppa
+  apt_repository:
+    repo: ppa:jonathonf/vim
+    state: present
+  become: true
+
+- name: Install vim
+  apt:
+    name: vim
+    state: present
+    update_cache: yes
+  become: true
+
+- name: Install gvim
+  apt:
+    name: vim-gtk3
+    state: present
+    update_cache: yes
+  become: true
+
+- name: Install vim config
+  shell: >
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/nsiregar/vim-config/master/install.sh)"
+  become: false

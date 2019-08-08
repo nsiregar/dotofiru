@@ -1,0 +1,15 @@
+- name: Provision Box
+  hosts: all
+  connection: local
+  gather_facts: yes
+  roles:
+    - base
+    - zsh
+    - tmux
+    - pyenv
+    - nvm
+    - rvm
+    - sdkman
+    - rust
+    - docker
+

@@ -1,0 +1,14 @@
+- name: Install SDKMan
+  shell: >
+    curl -s "https://get.sdkman.io" | bash
+  become: false
+
+- name: Update .zshrc
+  lineinfile:
+    dest: "{{ ansible_env.HOME }}/.zshrc"
+    state: present
+    create: no
+    line: "{{ item }}"
+  with_items:
+    - 'export SDKMAN_DIR="/home/simbak/.sdkman"'
+    - '[[ -s "/home/simbak/.sdkman/bin/sdkman-init.sh" ]] && source "/home/simbak/.sdkman/bin/sdkman-init.sh"'

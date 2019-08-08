@@ -1,0 +1,9 @@
+[core]
+	excludesfile = ~/.gitignore_global
+
+[user]
+	name = Ngalim Siregar
+	email = ngalim.siregar@gmail.com
+
+[alias]
+	pr = !sh -c \"git fetch upstream pull/${1}/head:pr_${1} && git checkout pr_${1}\" -
