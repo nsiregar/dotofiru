@@ -4,7 +4,7 @@
 
 - name: Add docker ppa
   apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable"
     state: present
   become: true
 
@@ -24,5 +24,5 @@
   become: true
 
 - name: Add user to docker group
-  shell: usermod -aG docker {{ ansible_user_id }}
+  shell: "usermod -aG docker {{ ansible_user_id }}"
   become: true

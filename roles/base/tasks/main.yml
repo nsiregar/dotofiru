@@ -44,15 +44,15 @@
   copy:
     src: gitconfig
     dest: "{{ ansible_env.HOME }}/.gitconfig"
-    owner: {{ ansible_user_id }}
-    group: {{ ansible_user_id }}
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
     force: no
 
 - name: Copy gitignore
   copy:
     src: gitignore_global
     dest: "{{ ansible_env.HOME }}/.gitignore_global"
-    owner: {{ ansible_user_id }}
-    group: {{ ansible_user_id }}
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
     force: no
 
