@@ -1,6 +1,8 @@
 - name: Install pyenv
   shell: >
     curl https://pyenv.run | bash
+  args:
+    creates: "{{ ansible_env.HOME }}/.pyenv/"
   become: false
 
 - name: Update .zshrc

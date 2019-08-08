@@ -21,4 +21,6 @@
 - name: Install vim config
   shell: >
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/nsiregar/vim-config/master/install.sh)"
+  args:
+    creates: "{{ ansible_env.HOME }}/.vim-config/"
   become: false
