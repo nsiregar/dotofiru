@@ -1,30 +1,31 @@
 - name: Install required packages
   apt:
-    name: "{{ item }}"
+    name: "{{ packages }}"
     state: present
     update_cache: yes
   become: true
-  with_items:
-    - make
-    - cmake
-    - build-essential
-    - libssl-dev
-    - zlib1g-dev
-    - libbz2-dev
-    - libreadline-dev
-    - libsqlite3-dev
-    - wget
-    - curl
-    - llvm
-    - xclip
-    - fonts-powerline
-    - gnupg2
-    - apt-transport-https
-    - ca-certificates
-    - gnupg-agent
-    - software-properties-common
-    - exuberant-ctags
-    - silversearcher-ag
+  vars:
+    packages:
+      - make
+      - cmake
+      - build-essential
+      - libssl-dev
+      - zlib1g-dev
+      - libbz2-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - wget
+      - curl
+      - llvm
+      - xclip
+      - fonts-powerline
+      - gnupg2
+      - apt-transport-https
+      - ca-certificates
+      - gnupg-agent
+      - software-properties-common
+      - exuberant-ctags
+      - silversearcher-ag
 
 - name: Add git ppa
   apt_repository:
@@ -43,11 +44,15 @@
   copy:
     src: gitconfig
     dest: "{{ ansible_env.HOME }}/.gitconfig"
+    owner: {{ ansible_user_id }}
+    group: {{ ansible_user_id }}
     force: no
 
 - name: Copy gitignore
   copy:
     src: gitignore_global
     dest: "{{ ansible_env.HOME }}/.gitignore_global"
+    owner: {{ ansible_user_id }}
+    group: {{ ansible_user_id }}
     force: no
 
