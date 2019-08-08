@@ -10,4 +10,6 @@
 
 - name: Change shell to zsh
   shell: chsh -s /bin/zsh
+  become: false
+
 

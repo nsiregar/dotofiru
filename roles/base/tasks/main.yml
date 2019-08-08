@@ -47,7 +47,6 @@
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_user_id }}"
     force: no
-  become: true
 
 - name: Copy gitignore
   copy:
@@ -56,5 +55,4 @@
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_user_id }}"
     force: no
-  become: true
 
