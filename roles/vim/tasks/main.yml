@@ -18,9 +18,18 @@
     update_cache: yes
   become: true
 
-- name: Install vim config
-  shell: >
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/nsiregar/vim-config/master/install.sh)"
-  args:
-    creates: "{{ ansible_env.HOME }}/.vim-config/"
-  become: false
+- name: Copy vim config
+  copy:
+    src: vimrc
+    dest: "{{ ansible_env.HOME }}/.vimrc"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+    force: no
+
+
+# - name: Install vim config
+#   shell: >
+#     sh -c "$(curl -fsSL https://raw.githubusercontent.com/nsiregar/vim-config/master/install.sh)"
+#   args:
+#     creates: "{{ ansible_env.HOME }}/.vim-config/"
+#   become: false
